@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class DeployCoin : MonoBehaviour
 {
-    public GameObject[] prefabs;
+    public GameObject coinPrefab;
     private float rightBorder = -35;
     public Vector2 screenBounds;
 
-    float coinChance = 0.80f;
-    int COIN_INDEX = 0;
-    int SHIELD_INDEX = 1;
     float _upperScreenBound = 4.6f;//4.6f;
     float _lowerScreenBound = -2.6f;//-2.6f;
 
@@ -25,17 +22,9 @@ public class DeployCoin : MonoBehaviour
     }
     private void spawnCoin()
     {
-        GameObject a;
-        float chance = Random.Range(0f, 1f);
-        if(chance <= coinChance)
-        {
-            a = Instantiate(prefabs[COIN_INDEX]) as GameObject;
-        }
-        else
-        {
-            a = Instantiate(prefabs[SHIELD_INDEX]) as GameObject;
-        }
-        a.transform.position = new Vector2(rightBorder, Random.Range(_lowerScreenBound, _upperScreenBound));
+
+        GameObject a = Instantiate(coinPrefab) as GameObject;
+        a.transform.position = new Vector2(rightBorder+10, Random.Range(_lowerScreenBound, _upperScreenBound));
     }
 
     IEnumerator coinWave()

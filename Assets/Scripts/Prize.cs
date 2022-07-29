@@ -11,6 +11,7 @@ public class Prize : MonoBehaviour
     public int coinValue;
     private Rigidbody2D rb;
     private float leftBorder;
+    private bool catchCoin = false;
     public static int totalCoins = 0;
 
 
@@ -33,30 +34,30 @@ public class Prize : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (transform.position.x < leftBorder)
+        {
+            Destroy(this.gameObject);
+        }
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         RedBird player = other.gameObject.GetComponent<RedBird>();
-        if (player != null)
+        if (player != null  &&  !catchCoin)
         {
             //gameLevelManager.AddCoins(coinValue);
-            if (gameObject.tag.Equals("Coin"))
-            {
-                totalCoins += coinValue;
-                StartCoroutine(CollectPrize());
-            }
-            else if (gameObject.tag.Equals("Shield"))
-            {
-                player.ActivateShield(gameObject);
-            }
+            catchCoin = true;
+            totalCoins += coinValue;
+            this.transform.localScale = Vector3.zero;
+            StartCoroutine(CollectPrize());
+
         }
     }
 
     IEnumerator CollectPrize()
     {
+        GetComponent<AudioSource>().Play();
         _particleSystem.Play();
-        yield return new WaitForSeconds((float)0.25);
+        yield return new WaitForSeconds((float)3);
         gameObject.SetActive(false);
     }
 }

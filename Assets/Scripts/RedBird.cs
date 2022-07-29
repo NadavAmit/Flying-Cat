@@ -19,7 +19,7 @@ public class RedBird : MonoBehaviour
     GameObject targetCatOnly;
     GameObject grave;
     GameObject cemetery;
-    GameObject shield;
+    GameObject godModeRing;
     Rigidbody2D grave_rb;
     Cinemachine.CinemachineVirtualCamera cm_camera;
 
@@ -43,7 +43,6 @@ public class RedBird : MonoBehaviour
     State _state;
     float _upperScreenBound;//4.6f;
     float _lowerScreenBound;//-2.6f;
-    bool isShielded = false;
     
     //new Cinemachine.CinemachineTargetGroup camera;
 
@@ -58,9 +57,10 @@ public class RedBird : MonoBehaviour
         useWhenLow = GameObject.Find("pullDown").transform;
         constant_x_position1 = upperFocus.position.x;
         constant_x_position2 = useWhenHigh.position.x;
-        _upperScreenBound = GameObject.Find("Mountains & Clouds").transform.position.y + (float)6.8;
-        _lowerScreenBound= GameObject.Find("Ground").transform.position.y + (float)1.45;
-
+        //_upperScreenBound = GameObject.Find("Mountains & Clouds").transform.position.y + (float)6.8;   // this creates bugs! i changed it!
+        //_lowerScreenBound= GameObject.Find("Ground").transform.position.y + (float)1.45;
+        _upperScreenBound = 8.81241f;
+        _lowerScreenBound = -2.7923f;
         cm_camera = GameObject.Find("CM vcam1").GetComponent<Cinemachine.CinemachineVirtualCamera>();
         targetGroupWhenHigh = GameObject.Find("TargetGroupWhenHigh");
         targetGroupWhenLow = GameObject.Find("TargetGroupWhenLow"); ;
@@ -69,7 +69,9 @@ public class RedBird : MonoBehaviour
         grave = GameObject.Find("cat_grave");
         grave_rb = grave.GetComponent<Rigidbody2D>();
         cemetery = GameObject.Find("graveYard");
-
+        godModeRing = GameObject.Find("GodModeRing");
+        if (godModeRing != null)
+            godModeRing.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -80,30 +82,6 @@ public class RedBird : MonoBehaviour
         _rigidbody2D.position = new Vector2(_rigidbody2D.position.x, -2.64f);
         grave.SetActive(false);
         cemetery.SetActive(false);
-    }
-
-    public bool IsShielded()
-    {
-        if (isShielded)
-        {
-            isShielded = false;
-            this.shield.SetActive(false);
-            return true;
-        }
-        return false;
-    }
-
-    public void ActivateShield(GameObject shield)
-    {
-        if (!isShielded)
-        {
-            this.shield = shield;
-            isShielded = true;
-            this.shield.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            this.shield.transform.localScale = new Vector3(1, 1, 1);
-            this.shield.transform.position = gameObject.transform.position;
-            this.shield.transform.SetParent(this.gameObject.transform);
-        }
     }
 
     void FlyUp()
@@ -139,6 +117,20 @@ public class RedBird : MonoBehaviour
 
     void keepFlying()
     {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (LevelController_A.godMode)
+            {
+                LevelController_A.godMode = false;
+                godModeRing.SetActive(false);
+            }
+            else
+            {
+                LevelController_A.godMode = true;
+                godModeRing.SetActive(false);
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             switch (_state)

@@ -8,27 +8,46 @@ public class LevelController_A : MonoBehaviour
 {
     [SerializeField] string _nextLevelName;
     [SerializeField] public float backgroundSpeed;
-    [SerializeField] public bool godMode = false;
+    [SerializeField] public static bool godMode = false;
+    [SerializeField] public int[] coinsForNextLevel = {25, 50, 100};
 
-    RedBird player;
-    CoinCounter coinCounter;
+    Scene scene;
     public GameOverScreen gameOverScreen;
+    RedBird player;
+    private int totalCoins;
     Dragon[] _dragons;
 
     void OnEnable()
     {
         _dragons = FindObjectsOfType<Dragon>();
         player = GameObject.Find("Red Bird").GetComponent<RedBird>();
+        scene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (MonstersAreAllDead())
-        //    GoToNextLevel();
-        if (player.falling[2] == false)
+        if (player.falling[2] == false)  // player died and finished fall
             gameOverScreen.Setup(Prize.totalCoins);
+        else
+        {
+            totalCoins = Prize.totalCoins;
+            if (totalCoins >= coinsForNextLevel[0]  &&  scene.name == "Level1")
+            {
+                SceneManager.LoadScene("Level2");
+            }
+            else if (totalCoins >= coinsForNextLevel[1] && scene.name == "Level2")
+            {
+                SceneManager.LoadScene("Level3");
+            }
+            else if (totalCoins >= coinsForNextLevel[2] && scene.name == "Level3")
+            {
+                // finish the game!
+            }
+        }
     }
+
+
 
     private void GoToNextLevel()
     {

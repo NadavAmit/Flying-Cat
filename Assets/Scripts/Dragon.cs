@@ -29,10 +29,9 @@ public class Dragon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        speed = levelController.backgroundSpeed;
+        speed = levelController.backgroundSpeed + 1.5f;
         rb.velocity = new Vector2(-speed, 0);
         if (transform.position.x < leftBorder) {
-            //gameObject.SetActive(false);
             Destroy(this.gameObject);
         }
     }
@@ -43,11 +42,7 @@ public class Dragon : MonoBehaviour
         if (player != null)
         {
             Debug.Log("A dragon just hit the cat!");
-            if (!player.IsShielded())
-            {
-                levelController.GameOver();
-            }
-            gameObject.SetActive(false);
+            levelController.GameOver();
         }
     }
 

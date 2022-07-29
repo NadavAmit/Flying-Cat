@@ -25,12 +25,13 @@ public class DeployDragons : MonoBehaviour
     private void spawnEnemy() {
 
         GameObject a = Instantiate(dragonPrefab) as GameObject;
-        a.transform.position = new Vector2(rightBorder,Random.Range(_lowerScreenBound , _upperScreenBound));
+        a.transform.position = new Vector2(rightBorder+10,Random.Range(_lowerScreenBound , _upperScreenBound));
     }
    IEnumerator dragonWave()
     {
         while (true)
         {
+
             yield return new WaitForSeconds(Random.Range(1.0f,2.0f));
             spawnEnemy();
         }
