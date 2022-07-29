@@ -41,9 +41,15 @@ public class Prize : MonoBehaviour
         if (player != null)
         {
             //gameLevelManager.AddCoins(coinValue);
-            totalCoins += coinValue;
-            StartCoroutine(CollectPrize());
-
+            if (gameObject.tag.Equals("Coin"))
+            {
+                totalCoins += coinValue;
+                StartCoroutine(CollectPrize());
+            }
+            else if (gameObject.tag.Equals("Shield"))
+            {
+                player.ActivateShield(gameObject);
+            }
         }
     }
 

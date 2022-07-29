@@ -43,7 +43,11 @@ public class Dragon : MonoBehaviour
         if (player != null)
         {
             Debug.Log("A dragon just hit the cat!");
-            levelController.GameOver();
+            if (!player.IsShielded())
+            {
+                levelController.GameOver();
+            }
+            gameObject.SetActive(false);
         }
     }
 
