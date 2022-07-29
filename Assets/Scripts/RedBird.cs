@@ -19,6 +19,7 @@ public class RedBird : MonoBehaviour
     GameObject targetCatOnly;
     GameObject grave;
     GameObject cemetery;
+    GameObject shield;
     Rigidbody2D grave_rb;
     Cinemachine.CinemachineVirtualCamera cm_camera;
 
@@ -42,6 +43,7 @@ public class RedBird : MonoBehaviour
     State _state;
     float _upperScreenBound;//4.6f;
     float _lowerScreenBound;//-2.6f;
+    bool isShielded = false;
     
     //new Cinemachine.CinemachineTargetGroup camera;
 
@@ -78,6 +80,30 @@ public class RedBird : MonoBehaviour
         _rigidbody2D.position = new Vector2(_rigidbody2D.position.x, -2.64f);
         grave.SetActive(false);
         cemetery.SetActive(false);
+    }
+
+    public bool IsShielded()
+    {
+        if (isShielded)
+        {
+            isShielded = false;
+            this.shield.SetActive(false);
+            return true;
+        }
+        return false;
+    }
+
+    public void ActivateShield(GameObject shield)
+    {
+        if (!isShielded)
+        {
+            this.shield = shield;
+            isShielded = true;
+            this.shield.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            this.shield.transform.localScale = new Vector3(1, 1, 1);
+            this.shield.transform.position = gameObject.transform.position;
+            this.shield.transform.SetParent(this.gameObject.transform);
+        }
     }
 
     void FlyUp()

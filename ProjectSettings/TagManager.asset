@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Background
+  - Prize
+  - Coin
+  - Shield
   layers:
   - Default
   - TransparentFX
