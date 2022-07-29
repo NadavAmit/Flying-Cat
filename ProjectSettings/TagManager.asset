@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Background
+  - Prize
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Front
   - 
   - 
   - 
@@ -48,4 +49,7 @@ TagManager:
     locked: 0
   - name: Particles
     uniqueID: 2311210715
+    locked: 0
+  - name: UI
+    uniqueID: 1629737957
     locked: 0

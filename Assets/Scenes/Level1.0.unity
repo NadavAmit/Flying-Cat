@@ -4274,6 +4274,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3468717364690100786, guid: 1b13a5cfa2dc98e4390fcbf9d5e63811, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468717364707600176, guid: 1b13a5cfa2dc98e4390fcbf9d5e63811, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468717365322492546, guid: 1b13a5cfa2dc98e4390fcbf9d5e63811, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468717365659828269, guid: 1b13a5cfa2dc98e4390fcbf9d5e63811, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8490619429275955921, guid: 1b13a5cfa2dc98e4390fcbf9d5e63811, type: 3}
       propertyPath: m_Name
       value: Red Bird
