@@ -41,8 +41,8 @@ public class RedBird : MonoBehaviour
     Rigidbody2D _rigidbody2D;
     SpriteRenderer _spriteRenderer;
     State _state;
-    float _upperScreenBound;//4.6f;
-    float _lowerScreenBound;//-2.6f;
+    public static float _upperScreenBound;
+    public static float _lowerScreenBound;
     
     //new Cinemachine.CinemachineTargetGroup camera;
 
@@ -59,8 +59,10 @@ public class RedBird : MonoBehaviour
         constant_x_position2 = useWhenHigh.position.x;
         //_upperScreenBound = GameObject.Find("Mountains & Clouds").transform.position.y + (float)6.8;   // this creates bugs! i changed it!
         //_lowerScreenBound= GameObject.Find("Ground").transform.position.y + (float)1.45;
+
         _upperScreenBound = 8.81241f;
         _lowerScreenBound = -2.7923f;
+
         cm_camera = GameObject.Find("CM vcam1").GetComponent<Cinemachine.CinemachineVirtualCamera>();
         targetGroupWhenHigh = GameObject.Find("TargetGroupWhenHigh");
         targetGroupWhenLow = GameObject.Find("TargetGroupWhenLow"); ;

@@ -8,8 +8,8 @@ public class DeployCoin : MonoBehaviour
     private float rightBorder = -35;
     public Vector2 screenBounds;
 
-    float _upperScreenBound = 4.6f;//4.6f;
-    float _lowerScreenBound = -2.6f;//-2.6f;
+    float _upperScreenBound;//4.6f;
+    float _lowerScreenBound;//-2.6f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,9 @@ public class DeployCoin : MonoBehaviour
         var dist = (transform.position - Camera.main.transform.position).z;
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, dist)).x;
+
+        _upperScreenBound = RedBird._upperScreenBound;
+        _lowerScreenBound = RedBird._lowerScreenBound;
 
         StartCoroutine(coinWave());
     }

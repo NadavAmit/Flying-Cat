@@ -20,8 +20,9 @@ public class Tutorial : MonoBehaviour
 
     void OnClickToStage2()
     {
-        Debug.Log("You have clicked the button!");
+        //Debug.Log("You have clicked the button!yeahhh");
     }
+
     // Update is called once per frame
     void Update()
     {

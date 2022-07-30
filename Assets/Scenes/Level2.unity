@@ -4956,6 +4956,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 0c523ecde99217149af6793191dd6fbe, type: 3}
     - target: {fileID: 5041746189560131676, guid: 53919c457ccc2d14c9339bfae6901d7b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 5041746189560131676, guid: 53919c457ccc2d14c9339bfae6901d7b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 5041746189560131676, guid: 53919c457ccc2d14c9339bfae6901d7b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 5041746189560131676, guid: 53919c457ccc2d14c9339bfae6901d7b, type: 3}
       propertyPath: m_SortingOrder
       value: 150
       objectReference: {fileID: 0}
