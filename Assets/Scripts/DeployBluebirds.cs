@@ -27,7 +27,7 @@ public class DeployBluebirds : MonoBehaviour
     private void spawnBlueBird()
     {
         GameObject a = Instantiate(BluebirdPrefab) as GameObject;
-        a.transform.position = new Vector2(rightBorder+5, Random.Range(_lowerScreenBound, _upperScreenBound));
+        a.transform.position = new Vector2(rightBorder, Random.Range(_lowerScreenBound, _upperScreenBound));
     }
 
     IEnumerator BlueBirdWave()

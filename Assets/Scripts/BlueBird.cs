@@ -42,8 +42,12 @@ public class BlueBird : MonoBehaviour
         RedBird player = collision.gameObject.GetComponent<RedBird>();  // if it was not hit by the RedBird, then it will be null
         if (player != null)
         {
-            Debug.Log("A bluebird just hit the cat!");
-            levelController.GameOver();
+            Debug.Log("Flame hit cat");
+            if (!player.IsShielded())
+            {
+                levelController.GameOver();
+            }
+            gameObject.SetActive(false);
         }
     }
 

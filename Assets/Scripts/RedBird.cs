@@ -20,6 +20,7 @@ public class RedBird : MonoBehaviour
     GameObject grave;
     GameObject cemetery;
     GameObject godModeRing;
+    GameObject shield;
     Rigidbody2D grave_rb;
     Cinemachine.CinemachineVirtualCamera cm_camera;
 
@@ -27,6 +28,8 @@ public class RedBird : MonoBehaviour
     float constant_x_position2;
     public Boolean stillAlive = true;
     public bool[] falling = {true, true, true};
+    float timer = 0.0f;
+    float shieldDuration = 5f;
 
 
     enum State
@@ -43,7 +46,8 @@ public class RedBird : MonoBehaviour
     State _state;
     public static float _upperScreenBound;
     public static float _lowerScreenBound;
-    
+    bool isShielded = false;
+
     //new Cinemachine.CinemachineTargetGroup camera;
 
     private void Awake()
@@ -84,6 +88,30 @@ public class RedBird : MonoBehaviour
         _rigidbody2D.position = new Vector2(_rigidbody2D.position.x, -2.64f);
         grave.SetActive(false);
         cemetery.SetActive(false);
+    }
+    public bool IsShielded()
+    {
+        if (isShielded)
+        {
+            isShielded = false;
+            this.shield.SetActive(false);
+            timer = 0.0f;
+            return true;
+        }
+        return false;
+    }
+
+    public void ActivateShield(GameObject shield)
+    {
+        if (!isShielded)
+        {
+            this.shield = shield;
+            isShielded = true;
+            this.shield.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            this.shield.transform.localScale = new Vector3(1, 1, 1);
+            this.shield.transform.position = gameObject.transform.position;
+            this.shield.transform.SetParent(this.gameObject.transform);
+        }
     }
 
     void FlyUp()
@@ -253,13 +281,24 @@ public class RedBird : MonoBehaviour
     }
 
 
+    void UpdateShieldTimer()
+    {
+        timer += Time.deltaTime;
+        if (timer >= shieldDuration)
+            IsShielded();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (isShielded)
+        {
+            UpdateShieldTimer();
+        }
         if (stillAlive)
         {
             keepFlying();
-        } 
+        }
         else
         {
             fallToGrave();

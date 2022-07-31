@@ -10,6 +10,10 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
+    public void PlayTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
     public void QuitGame() {
 
         Debug.Log("Game is exiting...");

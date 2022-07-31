@@ -6,7 +6,7 @@ using UnityEngine;
 public class Prize : MonoBehaviour
 {
     [SerializeField] ParticleSystem _particleSystem;
-    [SerializeField] float speed = 5;
+    [SerializeField] float speed = 3;
 
     public int coinValue;
     private Rigidbody2D rb;
@@ -42,14 +42,21 @@ public class Prize : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         RedBird player = other.gameObject.GetComponent<RedBird>();
-        if (player != null  &&  !catchCoin)
+        if (player != null)
         {
-            //gameLevelManager.AddCoins(coinValue);
-            catchCoin = true;
-            totalCoins += coinValue;
-            this.transform.localScale = Vector3.zero;
-            StartCoroutine(CollectPrize());
+            if (gameObject.tag.Equals("Coin") && !catchCoin)
+            {
+                //gameLevelManager.AddCoins(coinValue);
+                catchCoin = true;
+                totalCoins += coinValue;
+                this.transform.localScale = Vector3.zero;
+                StartCoroutine(CollectPrize());
 
+            }
+            else if (gameObject.tag.Equals("Shield"))
+            {
+                player.ActivateShield(gameObject);
+            }
         }
     }
 

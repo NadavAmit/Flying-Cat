@@ -10,8 +10,10 @@ public class Dragon : MonoBehaviour
     private float leftBorder;
     public float dragonSpeed;
     
-    private float last_height_change;
-    private bool up = true;
+    private float upperLimit;
+    private float lowerLimit;
+    enum State { UP, DOWN };
+    State state = State.UP;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +27,9 @@ public class Dragon : MonoBehaviour
         GameObject ground = GameObject.FindGameObjectWithTag("Background");
         levelController = GameObject.Find("LevelController").GetComponent<LevelController_A>();
         Physics2D.IgnoreCollision(ground.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-
-        last_height_change = Time.time;
+        upperLimit = Mathf.Min(gameObject.transform.position.y + 2f, RedBird._upperScreenBound);
+        lowerLimit = Mathf.Max(gameObject.transform.position.y - 2f, RedBird._lowerScreenBound);
+        
        // Physics2D.IgnoreLayerCollision(0, 1);
        // Physics2D.IgnoreLayerCollision(0, 2);
 
@@ -44,30 +47,46 @@ public class Dragon : MonoBehaviour
     private Vector2 updatedSpeedAndHeight()
     {
         speed = levelController.backgroundSpeed + dragonSpeed;
-        float height = 0;
-        //// I tried to make the dragon change it's height every two seconds, but it didn't work...
-        //Debug.Log("time" + Time.time);
-        //Debug.Log("diff: "+ (Time.time - last_height_change));
-
-        //if (Time.time - last_height_change >= 2)
-        //{
-        //    if (up)
-        //        height = 40;
-        //    else height = -40;
-        //    up = !up;
-        //    Debug.Log("any change? ------------------------------------------------ " + height);
-        //    last_height_change = Time.time;
-        //}
-        return new Vector2(-speed, height);
+        if(state == State.UP)
+        {
+            if (gameObject.transform.position.y <= upperLimit)
+            {
+                return new Vector2(-speed, speed/2);
+            }
+            else
+            {
+                state = State.DOWN;
+                return new Vector2(-speed, -speed/2);
+            }
+        }
+        else
+        {
+            if(gameObject.transform.position.y >= lowerLimit)
+            {
+                return new Vector2(-speed, -speed/2);
+            }
+            else
+            {
+                state = State.UP;
+                return new Vector2(-speed, speed/2);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        RedBird player = collision.gameObject.GetComponent<RedBird>();  // if it was not hit by the RedBird, then it will be null
-        if (player != null)
+        if (!collision.gameObject.CompareTag("Dragon"))
         {
-            Debug.Log("A dragon just hit the cat!");
-            levelController.GameOver();
+            RedBird player = collision.gameObject.GetComponent<RedBird>();  // if it was not hit by the RedBird, then it will be null
+            if (player != null)
+            {
+                Debug.Log("A dragon just hit the cat!");
+                if (!player.IsShielded())
+                {
+                    levelController.GameOver();
+                }
+                gameObject.SetActive(false);
+            }
         }
     }
 

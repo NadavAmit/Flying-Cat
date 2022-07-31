@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6554137501001530167}
   - component: {fileID: 6554137501001530168}
   - component: {fileID: 6554137501001530169}
+  - component: {fileID: 5228300616336880624}
+  - component: {fileID: -2855782772260240366}
   m_Layer: 0
   m_Name: FireSpit
   m_TagString: Untagged
@@ -28,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6554137501001530170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -35.56, y: -0.34, z: 0}
-  m_LocalScale: {x: 0.40037107, y: 0.40037107, z: 0.40037107}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -116,7 +118,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -457,3 +459,36 @@ PolygonCollider2D:
       - {x: -2.835, y: 1.095}
       - {x: -2.835, y: 1.105}
       - {x: -2.865, y: 1.135}
+--- !u!114 &5228300616336880624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6554137501001530170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d37cf8bd24d76f4eb7420294b235df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &-2855782772260240366
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6554137501001530170}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

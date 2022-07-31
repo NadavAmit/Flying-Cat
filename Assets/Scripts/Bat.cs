@@ -21,9 +21,16 @@ public class Bat : MonoBehaviour
 
         GameObject ground = GameObject.FindGameObjectWithTag("Background");
         levelController = GameObject.Find("LevelController").GetComponent<LevelController_A>();
-        Physics2D.IgnoreCollision(ground.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-       // Physics2D.IgnoreLayerCollision(0, 1);
-       // Physics2D.IgnoreLayerCollision(0, 2);
+        if (ground != null)
+            Physics2D.IgnoreCollision(ground.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        GameObject vulture = GameObject.Find("ScaryVulture");
+        GameObject flame = GameObject.Find("FireSpit");
+        if (vulture != null)
+            Physics2D.IgnoreCollision(vulture.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        if (flame != null)
+            Physics2D.IgnoreCollision(flame.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        // Physics2D.IgnoreLayerCollision(0, 1);
+        // Physics2D.IgnoreLayerCollision(0, 2);
 
     }
 
@@ -42,8 +49,12 @@ public class Bat : MonoBehaviour
         RedBird player = collision.gameObject.GetComponent<RedBird>();  // if it was not hit by the RedBird, then it will be null
         if (player != null)
         {
-            Debug.Log("A bat just hit the cat!");
-            levelController.GameOver();
+            Debug.Log("Flame hit cat");
+            if (!player.IsShielded())
+            {
+                levelController.GameOver();
+            }
+            gameObject.SetActive(false);
         }
     }
 

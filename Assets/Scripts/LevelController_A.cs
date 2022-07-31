@@ -10,6 +10,7 @@ public class LevelController_A : MonoBehaviour
     [SerializeField] public float backgroundSpeed;
     [SerializeField] public static bool godMode = false;
     [SerializeField] public int[] coinsForNextLevel = {25, 50, 100};
+    [SerializeField] public AudioSource deathSong;
 
     Scene scene;
     public GameOverScreen gameOverScreen;
@@ -34,14 +35,17 @@ public class LevelController_A : MonoBehaviour
             totalCoins = Prize.totalCoins;
             if (totalCoins >= coinsForNextLevel[0]  &&  scene.name == "Level1")
             {
+                GameObject.Find("ThemeSong1").GetComponent<AudioSource>().Stop();
                 SceneManager.LoadScene("Level2");
             }
             else if (totalCoins >= coinsForNextLevel[1] && scene.name == "Level2")
             {
+                GameObject.Find("ThemeSong2").GetComponent<AudioSource>().Stop();
                 SceneManager.LoadScene("Level3");
             }
             else if (totalCoins >= coinsForNextLevel[2] && scene.name == "Level3")
             {
+                GameObject.Find("ThemeSong3").GetComponent<AudioSource>().Stop();
                 // finish the game!
             }
         }
@@ -69,6 +73,21 @@ public class LevelController_A : MonoBehaviour
     {
         if (!godMode)
         {
+            if(scene.name == "Level1")
+            {
+                GameObject.Find("ThemeSong1").GetComponent<AudioSource>().Stop();
+                deathSong.Play();
+            }
+            else if (scene.name == "Level2")
+            {
+                GameObject.Find("ThemeSong2").GetComponent<AudioSource>().Stop();
+                deathSong.Play();
+            }
+            else if (scene.name == "Level3")
+            {
+                GameObject.Find("ThemeSong3").GetComponent<AudioSource>().Stop();
+                deathSong.Play();
+            }
             player.Die();
             // wait until cat falls!
         }
