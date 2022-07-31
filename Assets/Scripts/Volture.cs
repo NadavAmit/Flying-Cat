@@ -28,7 +28,10 @@ public class Volture : MonoBehaviour
         levelController = GameObject.Find("LevelController").GetComponent<LevelController_A>();
         //this.gameObject.transform.Translate(Vector2.up * _flySpeed * Time.deltaTime, Space.World);
         Physics2D.IgnoreCollision(ground.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        
+        GameObject confiner = GameObject.Find("Confiner");
+        if (confiner != null)
+            Physics2D.IgnoreCollision(confiner.GetComponent<PolygonCollider2D>(), GetComponent<Collider2D>());
+
     }
 
     void Hover()

@@ -29,9 +29,12 @@ public class Dragon : MonoBehaviour
         Physics2D.IgnoreCollision(ground.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         upperLimit = Mathf.Min(gameObject.transform.position.y + 2f, RedBird._upperScreenBound);
         lowerLimit = Mathf.Max(gameObject.transform.position.y - 2f, RedBird._lowerScreenBound);
-        
-       // Physics2D.IgnoreLayerCollision(0, 1);
-       // Physics2D.IgnoreLayerCollision(0, 2);
+        GameObject confiner = GameObject.Find("Confiner");
+        if (confiner != null)
+            Physics2D.IgnoreCollision(confiner.GetComponent<PolygonCollider2D>(), GetComponent<Collider2D>());
+
+        // Physics2D.IgnoreLayerCollision(0, 1);
+        // Physics2D.IgnoreLayerCollision(0, 2);
 
     }
 

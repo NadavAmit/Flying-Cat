@@ -25,10 +25,13 @@ public class Bat : MonoBehaviour
             Physics2D.IgnoreCollision(ground.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         GameObject vulture = GameObject.Find("ScaryVulture");
         GameObject flame = GameObject.Find("FireSpit");
+        GameObject confiner = GameObject.Find("Confiner");
         if (vulture != null)
             Physics2D.IgnoreCollision(vulture.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         if (flame != null)
             Physics2D.IgnoreCollision(flame.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        if (confiner != null)
+            Physics2D.IgnoreCollision(confiner.GetComponent<PolygonCollider2D>(), GetComponent<Collider2D>());
         // Physics2D.IgnoreLayerCollision(0, 1);
         // Physics2D.IgnoreLayerCollision(0, 2);
 

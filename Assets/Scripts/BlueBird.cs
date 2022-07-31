@@ -22,8 +22,11 @@ public class BlueBird : MonoBehaviour
         GameObject ground = GameObject.FindGameObjectWithTag("Background");
         levelController = GameObject.Find("LevelController").GetComponent<LevelController_A>();
         Physics2D.IgnoreCollision(ground.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-       // Physics2D.IgnoreLayerCollision(0, 1);
-       // Physics2D.IgnoreLayerCollision(0, 2);
+        GameObject confiner = GameObject.Find("Confiner");
+        if (confiner != null)
+            Physics2D.IgnoreCollision(confiner.GetComponent<PolygonCollider2D>(), GetComponent<Collider2D>());
+        // Physics2D.IgnoreLayerCollision(0, 1);
+        // Physics2D.IgnoreLayerCollision(0, 2);
 
     }
 

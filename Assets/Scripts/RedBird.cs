@@ -199,29 +199,29 @@ public class RedBird : MonoBehaviour
         // Keeping the position of the focus objects relative to the bird's y position ONLY.
         upperFocus.position = new Vector2(constant_x_position1, this.transform.position.y + viewRange);
         lowerFocus.position = new Vector2(constant_x_position1, this.transform.position.y - viewRange);
-        useWhenHigh.position = new Vector2(constant_x_position2, this.transform.position.y + (viewRange+(float)3.6));
-        useWhenLow.position = new Vector2(constant_x_position2, this.transform.position.y - (viewRange+(float)3.6));
-        if (limitCameraView)
-        {
-            float player_height = gameObject.transform.position.y;
-            if (player_height <= -1.6  ||  (player_height < -0.7  &&  _state == State.Ascend))  // if i'm too low, lift the camera view
-            {
-                cm_camera.Follow = targetGroupWhenLow.transform;
-            }
-            else if (player_height >= 6.14)  // if i'm too high, lower the camera view
-            {
-                cm_camera.Follow = targetGroupWhenHigh.transform;
-            }
-            else // i'm at the middle of the playground. keep the camera centered.
-            {
-                if (_state != State.Ascend && _state != State.Descend)
-                    cm_camera.Follow = targetGroupWhenNormal.transform;
-                //if (_state == State.Ascend && cm_camera.Follow == targetGroupWhenLow.transform && player_height < x)
-                //    cm_camera.Follow = targetGroupWhenLow.transform;
-            }
-            if (_state == State.Ascend || _state == State.Descend)
-                cm_camera.Follow = targetGroupWhenNormal.transform;
-        }else cm_camera.Follow = targetGroupWhenNormal.transform;
+        //useWhenHigh.position = new Vector2(constant_x_position2, this.transform.position.y + (viewRange+(float)3.6));
+        //useWhenLow.position = new Vector2(constant_x_position2, this.transform.position.y - (viewRange+(float)3.6));
+        //if (limitCameraView)
+        //{
+        //    float player_height = gameObject.transform.position.y;
+        //    if (player_height <= -1.6  ||  (player_height < -0.7  &&  _state == State.Ascend))  // if i'm too low, lift the camera view
+        //    {
+        //        cm_camera.Follow = targetGroupWhenLow.transform;
+        //    }
+        //    else if (player_height >= 6.14)  // if i'm too high, lower the camera view
+        //    {
+        //        cm_camera.Follow = targetGroupWhenHigh.transform;
+        //    }
+        //    else // i'm at the middle of the playground. keep the camera centered.
+        //    {
+        //        if (_state != State.Ascend && _state != State.Descend)
+        //            cm_camera.Follow = targetGroupWhenNormal.transform;
+        //        //if (_state == State.Ascend && cm_camera.Follow == targetGroupWhenLow.transform && player_height < x)
+        //        //    cm_camera.Follow = targetGroupWhenLow.transform;
+        //    }
+        //    if (_state == State.Ascend || _state == State.Descend)
+        //        cm_camera.Follow = targetGroupWhenNormal.transform;
+        //}//else cm_camera.Follow = targetGroupWhenNormal.transform;
     }
 
     public void Die()
@@ -232,6 +232,14 @@ public class RedBird : MonoBehaviour
         GetComponent<Animator>().enabled = false;
         GetComponent<SpriteRenderer>().sprite = _deadSprite;
         cm_camera.Follow = targetCatOnly.transform;
+        cm_camera.GetComponent<CinemachineConfiner>().enabled = false;
+        //cm_camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
+        //cm_camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>().m_YDamping = 0;
+        //cm_camera.GetCinemachineComponent<CinemachineTransposer>().m_XDamping = 0;
+        cm_camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_XDamping = 0;
+        cm_camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineFramingTransposer>().m_YDamping = 0;
+        //cm_camera.GetComponent<CinemachineVirtualCamera>().GetComponentPipeline()[0].m_XDamping = 0;
+
         for (int i = 0; i < transform.childCount; i++)
         {
             Transform child = transform.GetChild(i);
@@ -245,7 +253,7 @@ public class RedBird : MonoBehaviour
         if (falling[0])
         {
             cemetery.SetActive(true);
-            if (transform.position.y < -32)  // cat reach ground
+            if (transform.position.y < -32)  // cat reached the ground
             {
                 _rigidbody2D.velocity = Vector2.zero;
                 var t_group = targetCatOnly.GetComponent<CinemachineTargetGroup>();

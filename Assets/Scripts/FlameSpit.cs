@@ -15,7 +15,10 @@ public class FlameSpit : MonoBehaviour
         GameObject ground = GameObject.FindGameObjectWithTag("Background");
         levelController = GameObject.Find("LevelController").GetComponent<LevelController_A>();
         Physics2D.IgnoreCollision(ground.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        if(bird != null)
+        GameObject confiner = GameObject.Find("Confiner");
+        if (confiner != null)
+            Physics2D.IgnoreCollision(confiner.GetComponent<PolygonCollider2D>(), GetComponent<Collider2D>());
+        if (bird != null)
             this.GetComponent<Rigidbody2D>().velocity = (bird.transform.position - transform.position).normalized * flameSpeed;
     }
 
