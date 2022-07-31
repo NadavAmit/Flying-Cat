@@ -6,6 +6,8 @@ public class Volture : MonoBehaviour
 {
     [SerializeField] GameObject flame;
     [SerializeField] Transform flamePosition;
+    [SerializeField] public AudioSource wingFlap;
+    [SerializeField] public AudioSource fireSpit;
 
     GameObject bird;
     Rigidbody2D rb;
@@ -33,6 +35,7 @@ public class Volture : MonoBehaviour
     {
         if (!spitting)
         {
+            wingFlap.Play();
             rb.velocity = new Vector2(0, _flySpeed);
             StartCoroutine(SpitFlames());
             spitting = true;
@@ -81,12 +84,13 @@ public class Volture : MonoBehaviour
         if (bird.transform.position.y > this.gameObject.transform.position.y) angle *= -1; 
         Quaternion bulletRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         Instantiate(this.flame, flamePosition.position, bulletRotation);
-       
+        fireSpit.Play();
     }
 
     IEnumerator SpitFlames()
     {
-        while (true)
+        RedBird b = bird.GetComponent<RedBird>();
+        while (b.stillAlive)
         {
             yield return new WaitForSeconds(shootRate);
             SpitFlame();

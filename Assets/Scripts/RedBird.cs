@@ -26,11 +26,10 @@ public class RedBird : MonoBehaviour
 
     float constant_x_position1;
     float constant_x_position2;
-    public Boolean stillAlive = true;
+    public bool stillAlive = true;
     public bool[] falling = {true, true, true};
     float timer = 0.0f;
     float shieldDuration = 5f;
-
 
     enum State
     {

@@ -11,6 +11,7 @@ public class LevelController_A : MonoBehaviour
     [SerializeField] public static bool godMode = false;
     [SerializeField] public int[] coinsForNextLevel = {25, 50, 100};
     [SerializeField] public AudioSource deathSong;
+    [SerializeField] public AudioSource catDeath;
 
     Scene scene;
     public GameOverScreen gameOverScreen;
@@ -76,18 +77,21 @@ public class LevelController_A : MonoBehaviour
             if(scene.name == "Level1")
             {
                 GameObject.Find("ThemeSong1").GetComponent<AudioSource>().Stop();
-                deathSong.Play();
+                GameObject.Find("BirdsFlying").GetComponent<AudioSource>().Stop();
             }
             else if (scene.name == "Level2")
             {
                 GameObject.Find("ThemeSong2").GetComponent<AudioSource>().Stop();
-                deathSong.Play();
+                GameObject.Find("DragonGrowl").GetComponent<AudioSource>().Stop();
             }
             else if (scene.name == "Level3")
             {
                 GameObject.Find("ThemeSong3").GetComponent<AudioSource>().Stop();
-                deathSong.Play();
+                GameObject.Find("WingFlap").GetComponent<AudioSource>().Stop();
+                GameObject.Find("Bats").GetComponent<AudioSource>().Stop();
             }
+            deathSong.Play();
+            catDeath.Play();
             player.Die();
             // wait until cat falls!
         }
