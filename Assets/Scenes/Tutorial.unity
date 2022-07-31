@@ -6106,6 +6106,14 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4873765440264181732, guid: ad9b70b75a8753f4da69e9a74ce4ec74, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7e048931977fc0a44a1005a74f9d9fd8, type: 2}
+    - target: {fileID: 4873765440264181752, guid: ad9b70b75a8753f4da69e9a74ce4ec74, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0d950f6a31fc537499e2b0ce173da545, type: 3}
     - target: {fileID: 4873765440264181753, guid: ad9b70b75a8753f4da69e9a74ce4ec74, type: 3}
       propertyPath: m_Name
       value: Red Bird

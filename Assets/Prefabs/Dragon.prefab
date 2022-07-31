@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -7068910980579354888}
   - component: {fileID: 2854438550896435519}
   - component: {fileID: 2854438550896435520}
+  - component: {fileID: 1896528985}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Untagged
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14f60c306e98e44780859791c965c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragonSpeed: 2
 --- !u!50 &2854438550896435519
 Rigidbody2D:
   serializedVersion: 4
@@ -179,3 +181,23 @@ PolygonCollider2D:
       - {x: 0.66999996, y: -1.01}
       - {x: 0.81, y: -1.0799999}
       - {x: 0.96, y: -1.0699999}
+--- !u!95 &1896528985
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2785042576197938986}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5053770e45f2a714a9f1716bb112250a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

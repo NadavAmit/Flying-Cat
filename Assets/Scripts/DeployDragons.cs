@@ -14,7 +14,6 @@ public class DeployDragons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         var dist = (transform.position - Camera.main.transform.position).z;
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, dist)).x;
@@ -28,8 +27,9 @@ public class DeployDragons : MonoBehaviour
     private void spawnEnemy() {
 
         GameObject a = Instantiate(dragonPrefab) as GameObject;
-        a.transform.position = new Vector2(rightBorder+10,Random.Range(_lowerScreenBound , _upperScreenBound));
+        a.transform.position = new Vector2(rightBorder+10, Random.Range(_lowerScreenBound+0.5f, _upperScreenBound));
     }
+
    IEnumerator dragonWave()
     {
         while (true)

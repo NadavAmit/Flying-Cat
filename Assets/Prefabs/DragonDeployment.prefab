@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7563929599026623515
 Transform:
   m_ObjectHideFlags: 0
@@ -45,5 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragonPrefab: {fileID: 2785042576197938986, guid: d39f2f9b25b27624fbff518c9431703a, type: 3}
-  respawnTime: 1
   screenBounds: {x: 0, y: 0}

@@ -23,9 +23,9 @@ public class DeployCoin : MonoBehaviour
 
         StartCoroutine(coinWave());
     }
+
     private void spawnCoin()
     {
-
         GameObject a = Instantiate(coinPrefab) as GameObject;
         a.transform.position = new Vector2(rightBorder+10, Random.Range(_lowerScreenBound, _upperScreenBound));
     }
