@@ -6,3 +6,4 @@ The game contains 3 stages, with gradually increasing difficulty.
 There is a tutorial level, of course, for those who want to exercise with the mechanics of the game.
 
 Screenshots:
+[](http://www.nicolas-hahn.com/recurse/center/2018/07/25/set-solver/)
